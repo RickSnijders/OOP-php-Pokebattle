@@ -14,7 +14,9 @@ class Pikachu extends Pokemon {
         $this->SetAttack("Pika Punch", 20);
         $this->SetWeakness("Fire", 1.5);
         $this->SetResistance("Fighting", 20);
+        // parent::__construct($newName,"Lightning",60,60);
     }
+
 
     
 }

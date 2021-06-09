@@ -14,5 +14,6 @@ class Charmeleon extends Pokemon {
         $this->SetAttack("Flare", 30);
         $this->SetWeakness("Water", 2);
         $this->SetResistance("Lightning", 10);
+        // parent::__construct($newName,"Lightning",60,60);
     }
 }

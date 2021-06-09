@@ -3,38 +3,46 @@
 require_once "Pokemon.php";
 
 class Fight{
-	public $attacks1;
-	public $attacks2;
+	// public $attacks1;
+	// public $attacks2;
 
 	public function __construct($pokemon1, $pokemon2)
     {
-        // echo $pokemon1->name;
-        $attacks1 = $pokemon1->attack;
-        $attacks2 = $pokemon2->attack;
-        // echo $pokemon1->attack;
-        // echo $pokemon2->name;
+        var_dump($pokemon1);
+        $test = $pokemon1->GetName();
+        echo $test;
 
+        $attacks1 = $pokemon1->GetAttacks();
+        var_dump($attacks);
         
-        $this->SplitAttacks($attacks1);
-        $this->SplitAttacks($attacks2);
-    }
-    //Splits the attacks from the attack var
-    public function SplitAttacks($value){
-        $attackspok1 = explode(",", $value);
-        // echo $attackspok1[0];
-        // echo $attackspok1[1];
+        echo "<br>Pikachu attacks Charmeleon with ".$attacks1[0]->attackName.".<br>";
+        echo $attacks1[0]->attackDamage;
 
-        $att1 = explode("|", $attackspok1[0]);
-        $att1name = $att1[0];
-        $att1damage = $att1[1];
-        echo $att1name;
-        echo $att1damage;
+        $type1 = $pokemon1->GetEnergyType();
+        $type2 = $pokemon2->GetEnergyType();
+        echo $type1;
+        echo $type2;
 
-        $att2 = explode("|", $attackspok1[1]);
-        $att2name = $att2[0];
-        $att2damage = $att2[1];
-        echo $att2name;
-        echo $att2damage. "<br>";
+        $weakness1 = $pokemon1->GetWeakness();
+        $weakness2 = $pokemon2->GetWeakness();
+        echo $weakness1->weaknessName;
+        echo $weakness2->weaknessName;
+
+        $resistance1 = $pokemon1->GetResistance();
+        $resistance2 = $pokemon2->GetResistance();
+        echo $resistance1->resistanceName;
+        echo $resistance2->resistanceName;
+
+        if( $weakness2->weaknessName == $type1){
+            $damage = $attacks1[0]->attackDamage * $weakness2->weaknessMultiplier;
+        } else if($resistance2->resistanceName == $type1){
+            $damage = $attacks1[0]->attackDamage - $resistance2->resistanceMultiplier; 
+        }else{
+            $damage = $attacks1[0]->attackDamage; 
+        }
+        $currentHealth = $pokemon2->GetHealth();
+        $pokemon2->SetHealth($currentHealth-$damage);
+        echo $pokemon2->GetHealth();
     }
        
 }
