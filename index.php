@@ -14,8 +14,13 @@ $pokemon2 = new Charmeleon("Charmeleon");
 
 // print_r('<pre>'. $pokemon2 . '</pre>');
 
-$pokemon1->SayInformation();
-$pokemon2->SayInformation();
+echo $pokemon1->SayInformation();
+echo $pokemon2->SayInformation();
 
 
 $fight = new Fight($pokemon1, $pokemon2);
+
+$fight->Attack($pokemon1, $pokemon2, "Electric Ring");
+
+
+$fight->Attack($pokemon2, $pokemon1, "Flare");

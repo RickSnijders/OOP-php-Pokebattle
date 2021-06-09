@@ -19,7 +19,7 @@ class Pokemon{
         $this->energytype = "";
         $this->hitpoints = 0;
         $this->health = 0;
-        $this->attacks[] = array();
+        $this->attacks = [];
         $this->weakness = [];
         $this->resistance = "";
     }
@@ -27,11 +27,11 @@ class Pokemon{
     
     // All information about the pokemon
     public function SayInformation(){
-    	echo "Name: ". $this->GetName()."<br>";
-    	echo "Health: ". $this->GetHealth()."/".$this->GetHitpoints()."<br>";
-    	echo "Weakness: ". $this->GetWeakness()->weaknessName." ".$this->GetWeakness()->weaknessMultiplier."<br>";
-    	echo "Resistance: ". $this->GetResistance()->resistanceName." ".$this->GetResistance()->resistanceMultiplier."<br>";
-    	echo "Attack(s): ". $this->GetAttacks()[0]->attackName." ".$this->GetAttacks()[0]->attackDamage.", ".$this->GetAttacks()[1]->attackName." ".$this->GetAttacks()[1]->attackDamage."<br><br>";
+    	return "Name: ". $this->GetName()."<br>
+    	 Health: ". $this->GetHealth()."/".$this->GetHitpoints()."<br>
+    	 Weakness: ". $this->GetWeakness()->weaknessName." ".$this->GetWeakness()->weaknessMultiplier."<br>
+    	 Resistance: ". $this->GetResistance()->resistanceName." ".$this->GetResistance()->resistanceMultiplier."<br>
+    	 Attack(s): ". $this->GetAttacks()[0]->attackName." ".$this->GetAttacks()[0]->attackDamage.", ".$this->GetAttacks()[1]->attackName." ".$this->GetAttacks()[1]->attackDamage."<br><br>";
     }
 
     public function __toString() {
@@ -90,7 +90,7 @@ class Pokemon{
     public function SetAttack($newAttack, $newAttackdamage){
     	$cache = new Attack($newAttack, $newAttackdamage);
         $this->attacks [] = $cache;
-        // array_push($this->attacks, $test );
+        // array_push($this->attacks, $cache );
         // var_dump($this->attacks);
     	// $this->attacks .=  new Attack($newAttack, $newAttackdamage);
         // var_dump($this->attacks);
