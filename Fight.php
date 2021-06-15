@@ -3,21 +3,10 @@
 require_once "Pokemon.php";
 
 class Fight{
-    private $pok1;
-	private $pok2;
-	// public $attacks2;
+    private $message;
 
 	public function __construct($pokemon1, $pokemon2)
     {
-        $this->pok1 = $pokemon1;
-        $this->pok2 = $pokemon2;
-
-        var_dump($pokemon1);
-        $test = $pokemon1->GetName();
-        echo $test;
-
-        $attacks1 = $pokemon1->GetAttacks();
-        var_dump($attacks);
         
         // echo "<br>Pikachu attacks Charmeleon with ".$attacks1[0]->attackName.".<br>";
         // echo $attacks1[0]->attackDamage;
@@ -25,33 +14,37 @@ class Fight{
     }
 
     public function Attack($attacker, $defender, $move){
-        echo "<br><br><br><br><br><br>";
-        var_dump($attacker->GetAttacks());
+        // var_dump($attacker->GetAttacks());
         foreach($attacker->GetAttacks() AS $key=>$element){
             if ($element->attackName == $move){
-            echo "Gottcha! The index is - ". $key;
-            $attackIndex = $key;
+                $attackIndex = $key;
             }
         }
-        // var_dump($defender->GetWeakness());
-        $this->CalculateDamage( $defender->GetWeakness(), $defender->GetResistance(), $attacker->GetAttacks()[$attackIndex]->attackDamage, $attacker->GetEnergyType(), $defender);
+        $this->CalculateDamage( $defender->GetWeakness(), $defender->GetResistance(), $attacker->GetAttacks()[$attackIndex]->attackDamage, $attacker->GetEnergyType(), $defender, $attacker);
     }
 
-    public function CalculateDamage($weakness, $resistance, $damage, $attackerType, $defender){
+    public function CalculateDamage($weakness, $resistance, $damage, $attackerType, $defender, $attacker){
         if( $weakness->weaknessName == $attackerType){
-            $attackdamage = $damage * $weakness->weaknessMultiplier;
+            $attackdamage = $damage * $weakness->GetWeaknessMultiplier();
         } else if($resistance->resistanceName == $attackerType){
-            $attackdamage = $damage - $resistance->resistanceMultiplier; 
+            $attackdamage = $damage - $resistance->GetResistanceMultiplier(); 
         }else{
             $attackdamage = $damage; 
         }
-        echo "<br><br><br>";
-        echo "Damage ".$attackdamage;
-        $currentHealth = $defender->GetHealth();
-        $defender->SetHealth($currentHealth-$attackdamage);
-        echo "<br><br><br>";
-        echo "Health left ".$defender->GetHealth();
+        $this->DealDamage($attackdamage, $defender, $attacker);
     }
+
+    public function DealDamage($damage, $defender, $attacker){
+        $currentHealth = $defender->GetHealth();
+        $defender->SetHealth($currentHealth-$damage);
+        $this->message = $attacker->GetName()." attacked ".$defender->GetName()." and dealt ".$damage." damage <br>".$defender->GetName()." has ".$defender->GetHealth()." health left<br>";
+
+    }
+
+    public function GetMessage(){
+        return $this->message;
+    }
+    
        
 }
 
