@@ -5,14 +5,12 @@ require "Fight.php";
 require "Pikachu.php";
 require "Charmeleon.php";
 
-$pokemon1 = new Pikachu("Pikachu");
 
-// print_r('<pre>'. $pokemon1 . '</pre>');
+$pokemon1 = new Pikachu("Pikachu");
 
 
 $pokemon2 = new Charmeleon("Charmeleon");
 
-// print_r('<pre>'. $pokemon2 . '</pre>');
 
 echo $pokemon1->SayInformation();
 echo $pokemon2->SayInformation();
@@ -29,4 +27,4 @@ echo "<br>";
 
 $fight->Attack($pokemon2, $pokemon1, "Flare");
 echo $fight->GetMessage();
-echo Pokemon::getPopulation();
+echo " <br>Number of pokemons alive: ".Pokemon::getPopulation();

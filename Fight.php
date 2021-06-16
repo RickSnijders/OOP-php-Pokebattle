@@ -16,11 +16,11 @@ class Fight{
     public function Attack($attacker, $defender, $move){
         // var_dump($attacker->GetAttacks());
         foreach($attacker->GetAttacks() AS $key=>$element){
-            if ($element->attackName == $move){
+            if ($element->GetAttackName() == $move){
                 $attackIndex = $key;
             }
         }
-        $this->CalculateDamage( $defender->GetWeakness(), $defender->GetResistance(), $attacker->GetAttacks()[$attackIndex]->attackDamage, $attacker->GetEnergyType(), $defender, $attacker);
+        $this->CalculateDamage( $defender->GetWeakness(), $defender->GetResistance(), $attacker->GetAttacks()[$attackIndex]->GetAttackDamage(), $attacker->GetEnergyType(), $defender, $attacker);
     }
 
     public function CalculateDamage($weakness, $resistance, $damage, $attackerType, $defender, $attacker){

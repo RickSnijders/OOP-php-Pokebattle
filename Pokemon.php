@@ -33,7 +33,7 @@ class Pokemon{
     	 Health: ". $this->GetHealth()."/".$this->GetHitpoints()."<br>
     	 Weakness: ". $this->GetWeakness()->weaknessName." ".$this->GetWeakness()->weaknessMultiplier."<br>
     	 Resistance: ". $this->GetResistance()->resistanceName." ".$this->GetResistance()->resistanceMultiplier."<br>
-    	 Attack(s): ". $this->GetAttacks()[0]->attackName." ".$this->GetAttacks()[0]->attackDamage.", ".$this->GetAttacks()[1]->attackName." ".$this->GetAttacks()[1]->attackDamage."<br><br>";
+    	 Attack(s): ". $this->GetAttacks()[0]->GetAttackName()." ".$this->GetAttacks()[0]->GetAttackDamage().", ".$this->GetAttacks()[1]->GetAttackName()." ".$this->GetAttacks()[1]->GetAttackDamage()."<br><br>";
     }
 
     public function __toString() {
